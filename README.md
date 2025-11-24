@@ -123,7 +123,7 @@ Example invocations for standard, brute, and reverse runs:
 dnspeek is ~72x faster than dnsrecon on `google.com` standard scans (timeout 2s,
 threads 5).
 
-Results (hyperfine):
+Results:
 
 | Command    |     Mean [ms] | Min [ms] | Max [ms] |     Relative |
 | :--------- | ------------: | -------: | -------: | -----------: |
