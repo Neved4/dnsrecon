@@ -1,4 +1,4 @@
-<h3 align="center"><code>dnspeek</code> · Fast DNS enumeration in Go</h3>
+<h3 align="center"><code>dnspeek</code> · Fast DNS recon in Go</h3>
 <p align="center">
 	<a href="#features">Features</a> •
 	<a href="#getting-started">Getting Started</a> •
