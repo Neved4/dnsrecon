@@ -1,6 +1,6 @@
 .POSIX:
 
-.PHONY: all fmt vet test tidy build run go-run clean
+.PHONY: all fmt vet test tidy build run clean
 
 all: fmt vet test
 
@@ -21,8 +21,6 @@ build:
 
 run:
 	go run ./cmd/dnspeek
-
-go-run: run
 
 clean:
 	rm -f dnspeek
