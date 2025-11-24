@@ -22,12 +22,13 @@ while keeping results easy to review.
 
 ## Features
 
-- Equivalent [dnsrecon] feature set and **~72x faster**, in standard scans.
+- Equivalent [dnsrecon] feature set and **~72x faster**. See
+  [Benchmarks](#benchmarks).
 - General enum (SOA, NS, MX, A/AAAA, TXT/SPF, CAA, SRV) with optional AXFR, SPF
   expansion, crt.sh names, and DNSSEC NSEC walk.
-- Brute force hosts from `data/namelist.txt`, with wildcard-aware filtering.
+- Brute force hosts from lists, with wildcard-aware filtering.
 - Reverse sweeps over CIDRs or start-end ranges.
-- Cache snooping using `data/snoop.txt`.
+- Cache snooping.
 - SRV and TLD probes with thread control.
 
 ## Getting Started
