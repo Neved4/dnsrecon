@@ -15,11 +15,6 @@ built for clear output and sensible defaults. It handles general enumeration,
 brute force, reverse sweeps, SRV/TLD probes, AXFR attempts, and DNSSEC walks
 while keeping results easy to review.
 
-> [!IMPORTANT]
-> Pentesting tools must only be used in lab environments or on systems you are
-> explicitly authorized to test. Running this tool against systems you do not
-> own can be illegal and unethical.
-
 ## Features
 
 - Equivalent [dnsrecon] feature set and **~72x faster**. See
@@ -32,6 +27,11 @@ while keeping results easy to review.
 - SRV and TLD probes with thread control.
 
 ## Getting Started
+
+> [!IMPORTANT]
+> Pentesting tools must only be used in lab environments or on systems you are
+> explicitly authorized to test. Running this tool against systems you do not
+> own can be illegal and unethical.
 
 ### Installing
 
