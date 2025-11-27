@@ -32,10 +32,13 @@ CIDR or start-end range for reverse lookups.
 .It Fl t , Fl -type Ar list
 Scan types:
 .Dq std|brt|srv|tld|rvl|axfr|cache|zonewalk .
+Default:
+.Dq std .
 .It Fl n , Fl -ns Ar servers
 Comma list of resolvers.
 .It Fl D , Fl -dict Ar file
-Wordlist for brute forcing.
+Wordlist for brute forcing (default
+.Dq namelist.txt ) .
 .It Fl T , Fl -threads Ar num
 Concurrent lookups (default 20).
 .It Fl acfikpqsz

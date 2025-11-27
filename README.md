@@ -80,6 +80,9 @@ Options:
   -C, -no-color  Disable ANSI output
 ```
 
+Defaults: type `std`, dict `namelist.txt`, threads `20`, timeout `5`
+seconds.
+
 ### Configuration
 
 Wordlists live in `data/`. Set `DNSPEEK_DATA` to use a custom directory.
