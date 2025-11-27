@@ -84,18 +84,6 @@ dnspeek -d example.com -t std -as
 dnspeek --domain example.com --type brt --dict subdomains-top1mil-5000.txt
 dnspeek --range 192.0.2.0/29 --type rvl
 .Ed
-.Pp
-Sample output:
-.Bd -literal -offset indent
-[*] dnspeek v2 warming up.
-    Types: std
-    Domain: example.com
-[+] SOA example.com dns1.example.com hostmaster.example.com
-[+] NS example.com dns1.example.com bind:9.16
-[+] A example.com 192.0.2.10
-[+] SRV _sip._tcp.example.com sip.example.com port 5060
-[+] Zone transfer worked!
-.Ed
 .Sh EXIT STATUS
 .Ex -std
 .Sh SEE ALSO
