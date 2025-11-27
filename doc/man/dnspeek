@@ -1,0 +1,105 @@
+.Dd November 23, 2024
+.Dt DNSPEEK 1
+.Os
+.Sh NAME
+.Nm dnspeek
+.Nd DNS reconnaissance CLI with clear output and safe defaults
+.Sh SYNOPSIS
+.Nm
+.Op Fl d Ns | Ns Fl -domain Ar name
+.Op Fl r Ns | Ns Fl -range Ar cidr Ns | Ns Ar start-end
+.Op Fl t Ns | Ns Fl -type Ar list
+.Op Fl n Ns | Ns Fl -ns Ar servers
+.Op Fl D Ns | Ns Fl -dict Ar file
+.Op Fl T Ns | Ns Fl -threads Ar num
+.Op Fl acfikpqsz
+.Op Fl w Ns | Ns Fl -timeout Ar seconds
+.Op Fl C Ns | Ns Fl -no-color
+.Sh DESCRIPTION
+.Nm
+performs DNS reconnaissance with a focus on readable status lines and sensible
+defaults. It supports general enumeration, brute forcing, reverse sweeps,
+SRV and TLD probes, AXFR attempts, and DNSSEC walks. Results can be colored
+unless
+.Fl -no-color
+is set.
+.Sh OPTIONS
+.Bl -tag -width "-threads"
+.It Fl d , Fl -domain Ar name
+Target domain.
+.It Fl r , Fl -range Ar cidr Ns | Ns Ar start-end
+CIDR or start-end range for reverse lookups.
+.It Fl t , Fl -type Ar list
+Scan types:
+.Dq std|brt|srv|tld|rvl|axfr|cache|zonewalk .
+.It Fl n , Fl -ns Ar servers
+Comma list of resolvers.
+.It Fl D , Fl -dict Ar file
+Wordlist for brute forcing.
+.It Fl T , Fl -threads Ar num
+Concurrent lookups (default 20).
+.It Fl acfikpqsz
+Bundle short bool flags:
+.Dq -a -c -f -i -k -p -q -s -z .
+.It Fl p , Fl -tcp
+Use TCP for DNS queries.
+.It Fl f , Fl -wildcard
+Drop wildcard IPs during brute force.
+.It Fl i , Fl -ignore
+Continue brute forcing when wildcard DNS is present.
+.It Fl s , Fl -spf
+Reverse SPF ranges during std scans.
+.It Fl z , Fl -zone
+Attempt DNSSEC NSEC walk during std scans.
+.It Fl q , Fl -caa
+Include CAA lookups during std scans.
+.It Fl c , Fl -cache
+Run cache snooping.
+.It Fl k , Fl -crt
+Include crt.sh scraping during standard scans.
+.It Fl a , Fl -axfr
+Attempt zone transfer during standard scans.
+.It Fl w , Fl -timeout Ar seconds
+Per-query seconds (default 5.0).
+.It Fl C , Fl -no-color
+Disable ANSI colors in output.
+.El
+.Sh FILES
+.Bl -tag -width "data/snoop.txt"
+.It Pa data/namelist.txt
+Default brute force wordlist.
+.It Pa data/snoop.txt
+Names used for cache snooping.
+.It Pa data/subdomains-top1mil*.txt
+Alternate brute lists.
+.El
+.Sh ENVIRONMENT
+.Bl -tag -width "DNSPEEK_DATA"
+.It Ev DNSPEEK_DATA
+Override the directory containing data files.
+.El
+.Sh EXAMPLES
+.Bd -literal -offset indent
+dnspeek -d example.com -t std -as
+dnspeek --domain example.com --type brt --dict subdomains-top1mil-5000.txt
+dnspeek --range 192.0.2.0/29 --type rvl
+.Ed
+.Pp
+Sample output:
+.Bd -literal -offset indent
+[*] dnspeek v2 warming up.
+    Types: std
+    Domain: example.com
+[+] SOA example.com dns1.example.com hostmaster.example.com
+[+] NS example.com dns1.example.com bind:9.16
+[+] A example.com 192.0.2.10
+[+] SRV _sip._tcp.example.com sip.example.com port 5060
+[+] Zone transfer worked!
+.Ed
+.Sh EXIT STATUS
+.Ex -std
+.Sh SEE ALSO
+.Xr drill 1 ,
+.Xr dig 1
+.Sh AUTHORS
+.An Darwin Metropolis
