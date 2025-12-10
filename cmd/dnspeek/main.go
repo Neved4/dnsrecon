@@ -42,7 +42,7 @@ func main() {
 	var typeFlag string
 	var nsFlag string
 
-	registerFlags(&cfg, &typeFlag, &nsFlag)
+	addFlags(&cfg, &typeFlag, &nsFlag)
 
 	flag.Usage = func() {
 		fmt.Print(usageText)
@@ -222,7 +222,7 @@ func main() {
 	}
 }
 
-func registerFlags(
+func addFlags(
 	cfg *core.Config,
 	typeFlag *string,
 	nsFlag *string,
