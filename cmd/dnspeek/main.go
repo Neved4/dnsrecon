@@ -36,12 +36,6 @@ Flags (short and long):
   -C, --no-color  Disable ANSI colors.
 `
 
-const (
-	rangeHelp = "IP range for reverse lookups (CIDR or start-end)."
-	typeHelp  = "Scan types: std,brt,rvl,srv,tld,axfr,cache,zonewalk."
-	cacheHelp = "Check NS caches using test/snoop.txt."
-)
-
 func main() {
 	cfg := core.Config{}
 
@@ -233,6 +227,10 @@ func registerFlags(
 	typeFlag *string,
 	nsFlag *string,
 ) {
+	rangeHelp := "IP range for reverse lookups (CIDR or start-end)."
+	typeHelp := "Scan types: std,brt,rvl,srv,tld,axfr,cache,zonewalk."
+	cacheHelp := "Check NS caches using test/snoop.txt."
+
 	flag.StringVarP(&cfg.Domain, "domain", "d", "",
 		"Target domain to enumerate.")
 	flag.StringVarP(&cfg.RangeArg, "range", "r", "", rangeHelp)
