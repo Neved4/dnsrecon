@@ -226,16 +226,14 @@ func addFlags(
 	typeFlag *string,
 	nsFlag *string,
 ) {
-	rangeHelp := "IP range for reverse lookups (CIDR or start-end)."
-	typeHelp := "Scan types: std,brt,rvl,srv,tld,axfr,cache,zonewalk."
-	cacheHelp := "Check NS caches using test/snoop.txt."
-
 	flag.StringVarP(&cfg.Domain, "domain", "d", "",
 		"Target domain to enumerate.")
-	flag.StringVarP(&cfg.RangeArg, "range", "r", "", rangeHelp)
+	flag.StringVarP(&cfg.RangeArg, "range", "r", "",
+		"IP range for reverse lookups (CIDR or start-end).")
 	flag.StringVarP(&cfg.Dictionary, "dict", "D", "namelist.txt",
 		"Wordlist for brute force.")
-	flag.StringVarP(typeFlag, "type", "t", "std", typeHelp)
+	flag.StringVarP(typeFlag, "type", "t", "std",
+		"Scan types: std,brt,rvl,srv,tld,axfr,cache,zonewalk.")
 	flag.StringVarP(nsFlag, "ns", "n", "", "Comma list of nameservers to use.")
 
 	flag.BoolVarP(&cfg.UseTCP, "tcp", "p", false,
@@ -250,7 +248,8 @@ func addFlags(
 		"Attempt DNSSEC NSEC walk during std scans.")
 	flag.BoolVarP(&cfg.DoCAA, "caa", "q", false,
 		"Query CAA records during std scans.")
-	flag.BoolVarP(&cfg.DoCacheSnoop, "cache", "c", false, cacheHelp)
+	flag.BoolVarP(&cfg.DoCacheSnoop, "cache", "c", false,
+		"Check NS caches using test/snoop.txt.")
 	flag.BoolVarP(&cfg.DoCRT, "crt", "k", false,
 		"Pull hostnames from crt.sh during std scans.")
 	flag.BoolVarP(&cfg.DoAXFR, "axfr", "a", false,
