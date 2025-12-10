@@ -84,8 +84,8 @@ Override the directory containing wordlist files.
 .Sh EXAMPLES
 .Bd -literal -offset indent
 dnspeek -d example.com -t std -as
-dnspeek --domain example.com --type brt --dict subdomains-top1mil-5000.txt
-dnspeek --range 192.0.2.0/29 --type rvl
+dnspeek -domain example.com -type brt -dict subdomains-top1mil-5000.txt
+dnspeek -range 192.0.2.0/29 -type rvl
 .Ed
 .Sh EXIT STATUS
 .Ex -std

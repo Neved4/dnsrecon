@@ -15,25 +15,25 @@ import (
 const usageText = `usage: dnspeek -d <name> [-acfikpqsz] [-r <cidr|start-end>]
   [-t <type>] [-n <servers>] [-D <file>] [-T <num>] [-w <seconds>] [-C]
 
-Flags (short, long, and -long aliases):
+Flags (short and long):
   -acfikpqsz  Bundle bools in sorted order.
-  -d, -domain, --domain  Target domain (required for most scans).
-  -r, -range  CIDR or start-end for reverse lookups.
-  -t, -type  std|brt|srv|tld|rvl|axfr|cache|zonewalk.
-  -n, -ns    Comma list of resolvers.
-  -D, -dict  Wordlist for brute force.
-  -T, -threads  Concurrency level.
-  -p, -tcp  Force TCP.
-  -f, -wildcard  Drop wildcard IPs during brute force.
-  -i, -ignore  Continue brute force when wildcards exist.
-  -s, -spf  Reverse ranges seen in SPF during std scans.
-  -z, -zone  Attempt DNSSEC NSEC walk during std scans.
-  -q, -caa  Query CAA records during std scans.
-  -c, -cache  Run cache snooping.
-  -k, -crt  Scrape crt.sh during std scans.
-  -a, -axfr  Try zone transfer in std scans.
-  -w, -timeout  Per-query timeout in seconds.
-  -C, -no-color  Disable ANSI colors.
+  -d, --domain  Target domain (required for most scans).
+  -r, --range  CIDR or start-end for reverse lookups.
+  -t, --type  std|brt|srv|tld|rvl|axfr|cache|zonewalk.
+  -n, --ns    Comma list of resolvers.
+  -D, --dict  Wordlist for brute force.
+  -T, --threads  Concurrency level.
+  -p, --tcp  Force TCP.
+  -f, --wildcard  Drop wildcard IPs during brute force.
+  -i, --ignore  Continue brute force when wildcards exist.
+  -s, --spf  Reverse ranges seen in SPF during std scans.
+  -z, --zone  Attempt DNSSEC NSEC walk during std scans.
+  -q, --caa  Query CAA records during std scans.
+  -c, --cache  Run cache snooping.
+  -k, --crt  Scrape crt.sh during std scans.
+  -a, --axfr  Try zone transfer in std scans.
+  -w, --timeout  Per-query timeout in seconds.
+  -C, --no-color  Disable ANSI colors.
 `
 
 const (
@@ -54,9 +54,7 @@ func main() {
 		fmt.Print(usageText)
 	}
 
-	err := flag.CommandLine.Parse(
-		normalizeArgs(os.Args[1:]),
-	)
+	err := flag.CommandLine.Parse(os.Args[1:])
 	if err != nil {
 		os.Exit(2)
 	}
@@ -263,54 +261,4 @@ func registerFlags(
 		"Concurrent lookups to perform.")
 	flag.Float64VarP(&cfg.TimeoutSeconds, "timeout", "w", 5.0,
 		"Per-query timeout in seconds.")
-}
-
-var singleDashLong = map[string]struct{}{
-	"domain":   {},
-	"range":    {},
-	"dict":     {},
-	"type":     {},
-	"ns":       {},
-	"tcp":      {},
-	"wildcard": {},
-	"ignore":   {},
-	"spf":      {},
-	"zone":     {},
-	"caa":      {},
-	"cache":    {},
-	"crt":      {},
-	"axfr":     {},
-	"threads":  {},
-	"timeout":  {},
-	"no-color": {},
-}
-
-func normalizeArgs(args []string) []string {
-	normalized := make([]string, 0, len(args))
-	for _, arg := range args {
-		if !strings.HasPrefix(arg, "-") ||
-			strings.HasPrefix(arg, "--") ||
-			arg == "-" {
-			normalized = append(normalized, arg)
-			continue
-		}
-
-		name := strings.TrimPrefix(arg, "-")
-		value := ""
-		if idx := strings.Index(name, "="); idx >= 0 {
-			value = name[idx:]
-			name = name[:idx]
-		}
-
-		if _, ok := singleDashLong[name]; ok {
-			normalized = append(
-				normalized,
-				"--"+name+value,
-			)
-			continue
-		}
-
-		normalized = append(normalized, arg)
-	}
-	return normalized
 }

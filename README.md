@@ -61,23 +61,23 @@ usage: dnspeek -d <name> [-acfikpqsz] [-r <cidr|start-end>] [-t <type>]
   [-n <servers>] [-D <file>] [-T <num>] [-w <seconds>] [-C]
 
 Options:
-  -d, -domain    Target domain (required for most scans)
-  -r, -range     CIDR or start-end for reverse lookups
-  -t, -type      Scan types: std, brt, srv, tld, rvl, axfr, cache, zonewalk
-  -n, -ns        Comma list of resolvers
-  -D, -dict      Wordlist for brute force
-  -T, -threads   Concurrency level
-  -p, -tcp       Force TCP
-  -f, -wildcard  Drop wildcard IPs during brute force
-  -i, -ignore    Continue brute force when wildcard DNS is present
-  -s, -spf       Reverse SPF ranges during std
-  -z, -zone      Attempt DNSSEC NSEC walk during std
-  -q, -caa       Include CAA lookups during std
-  -c, -cache     Run cache snooping
-  -k, -crt       Scrape crt.sh during std
-  -a, -axfr      Try zone transfer in std
-  -w, -timeout   Per-query seconds
-  -C, -no-color  Disable ANSI output
+  -d, --domain    Target domain (required for most scans)
+  -r, --range     CIDR or start-end for reverse lookups
+  -t, --type      Scan types: std, brt, srv, tld, rvl, axfr, cache, zonewalk
+  -n, --ns        Comma list of resolvers
+  -D, --dict      Wordlist for brute force
+  -T, --threads   Concurrency level
+  -p, --tcp       Force TCP
+  -f, --wildcard  Drop wildcard IPs during brute force
+  -i, --ignore    Continue brute force when wildcard DNS is present
+  -s, --spf       Reverse SPF ranges during std
+  -z, --zone      Attempt DNSSEC NSEC walk during std
+  -q, --caa       Include CAA lookups during std
+  -c, --cache     Run cache snooping
+  -k, --crt       Scrape crt.sh during std
+  -a, --axfr      Try zone transfer in std
+  -w, --timeout   Per-query seconds
+  -C, --no-color  Disable ANSI output
 ```
 
 Defaults: type `std`, dict `namelist.txt`, threads `20`, timeout `5`
